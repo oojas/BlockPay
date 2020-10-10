@@ -42,26 +42,33 @@ class _webState extends State<web> {
               .make()
               .p16(),
           30.heightBox,
-          HStack([
-            FlatButton.icon(
-                onPressed: () {},
-                color: Colors.blue,
-                shape: Vx.roundedSm,
-                icon: Icon(Icons.refresh),
-                label: "Refresh".text.white.bold.make()),
-            FlatButton.icon(
-                onPressed: () {},
-                color: Colors.blue,
-                shape: Vx.roundedSm,
-                icon: Icon(Icons.refresh),
-                label: "Refresh".text.white.bold.make()),
-            FlatButton.icon(
-                onPressed: () {},
-                color: Colors.blue,
-                shape: Vx.roundedSm,
-                icon: Icon(Icons.refresh),
-                label: "Refresh".text.white.bold.make())
-          ])
+          HStack(
+            [
+              FlatButton.icon(
+                      onPressed: () {},
+                      color: Colors.blue,
+                      shape: Vx.roundedSm,
+                      icon: Icon(Icons.refresh),
+                      label: "Refresh".text.white.bold.make())
+                  .h(50),
+              FlatButton.icon(
+                      onPressed: () {},
+                      color: Colors.green,
+                      shape: Vx.roundedSm,
+                      icon: Icon(Icons.call_made_outlined),
+                      label: "Refresh".text.white.bold.make())
+                  .h(50),
+              FlatButton.icon(
+                      onPressed: () {},
+                      color: Colors.red,
+                      shape: Vx.roundedSm,
+                      icon: Icon(Icons.call_received_outlined),
+                      label: "Withdraw".text.white.bold.make())
+                  .h(50)
+            ],
+            alignment: MainAxisAlignment.spaceAround,
+            axisSize: MainAxisSize.max,
+          ).p16()
         ])
       ]),
     );
