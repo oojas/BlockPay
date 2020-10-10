@@ -1,10 +1,11 @@
-import 'package:Blockpay/Slider_widget.dart';
 import 'package:Blockpay/ss2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:web3dart/web3dart.dart';
+
+int myAmount = 0;
 
 class web extends StatefulWidget {
   @override
@@ -16,7 +17,7 @@ class _webState extends State<web> {
   Web3Client ethcl;
   bool data = false;
   final address = "0x197b4a6ECf9aE7Bb5593417A10ee645b2d9EFAa0";
-  int myAmount = 0;
+
   var myData;
   @override
   void initState() {
@@ -57,12 +58,14 @@ class _webState extends State<web> {
   Future<String> sendcoin() async {
     var bigamount = BigInt.from(myAmount);
     var response = await submit("getDeposit", [bigamount]);
+    print('Deposited');
     return response;
   }
 
   Future<String> withdrawcoin() async {
     var bigamount = BigInt.from(myAmount);
     var response = await submit("withdrawBalance", [bigamount]);
+    print('withdrawn');
     return response;
   }
 
@@ -111,8 +114,6 @@ class _webState extends State<web> {
           SliderWidget(
             max: 100,
             min: 0,
-            finalval: (value) =>
-                {myAmount = (value * 100).round(), print(myAmount)},
           ).centered(),
           HStack(
             [
@@ -128,7 +129,7 @@ class _webState extends State<web> {
                       color: Colors.green,
                       shape: Vx.roundedSm,
                       icon: Icon(Icons.call_made_outlined),
-                      label: "Refresh".text.white.bold.make())
+                      label: "Deposit".text.white.bold.make())
                   .h(50),
               FlatButton.icon(
                       onPressed: () => withdrawcoin(),
@@ -143,6 +144,112 @@ class _webState extends State<web> {
           ).p16()
         ])
       ]),
+    );
+  }
+}
+
+class SliderWidget extends StatefulWidget {
+  final double sliderHeight;
+  final int min;
+  final int max;
+  final fullWidth;
+  final ValueChanged<double> finalval;
+
+  SliderWidget(
+      {this.sliderHeight = 48,
+      this.max = 100,
+      this.min = 0,
+      this.fullWidth = false,
+      this.finalval});
+
+  @override
+  _SliderWidgetState createState() => _SliderWidgetState();
+}
+
+class _SliderWidgetState extends State<SliderWidget> {
+  @override
+  Widget build(BuildContext context) {
+    double paddingFactor = .2;
+
+    if (this.widget.fullWidth) paddingFactor = .3;
+
+    return Container(
+      width: this.widget.fullWidth
+          ? double.infinity
+          : (this.widget.sliderHeight) * 5.5,
+      height: (this.widget.sliderHeight),
+      decoration: new BoxDecoration(
+        borderRadius: new BorderRadius.all(
+          Radius.circular((this.widget.sliderHeight * .3)),
+        ),
+        gradient: new LinearGradient(
+            colors: [
+              const Color(0xFF00c6ff),
+              const Color(0xFF0072ff),
+            ],
+            begin: const FractionalOffset(0.0, 0.0),
+            end: const FractionalOffset(1.0, 1.00),
+            stops: [0.0, 1.0],
+            tileMode: TileMode.clamp),
+      ),
+      child: Padding(
+        padding: EdgeInsets.fromLTRB(this.widget.sliderHeight * paddingFactor,
+            2, this.widget.sliderHeight * paddingFactor, 2),
+        child: Row(
+          children: <Widget>[
+            Text(
+              '${this.widget.min}',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: this.widget.sliderHeight * .3,
+                fontWeight: FontWeight.w700,
+                color: Colors.white,
+              ),
+            ),
+            SizedBox(
+              width: this.widget.sliderHeight * .1,
+            ),
+            Expanded(
+              child: Center(
+                child: SliderTheme(
+                  data: SliderTheme.of(context).copyWith(
+                    activeTrackColor: Colors.white.withOpacity(1),
+                    inactiveTrackColor: Colors.white.withOpacity(.5),
+
+                    trackHeight: 4.0,
+                    thumbShape: CustomSliderThumbCircle(thumbRadius: 15.0),
+                    overlayColor: Colors.white.withOpacity(.4),
+                    //valueIndicatorColor: Colors.white,
+                    activeTickMarkColor: Colors.white,
+                    inactiveTickMarkColor: Colors.red.withOpacity(.7),
+                  ),
+                  child: Slider(
+                      min: 0,
+                      max: 100,
+                      value: myAmount.toDouble(),
+                      onChanged: (value) {
+                        setState(() {
+                          myAmount = value.round();
+                        });
+                      }),
+                ),
+              ),
+            ),
+            SizedBox(
+              width: this.widget.sliderHeight * .1,
+            ),
+            Text(
+              '${this.widget.max}',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: this.widget.sliderHeight * .3,
+                fontWeight: FontWeight.w700,
+                color: Colors.white,
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
