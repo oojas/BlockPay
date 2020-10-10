@@ -1,3 +1,5 @@
+import 'package:Blockpay/Slider_widget.dart';
+import 'package:Blockpay/ss2.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -13,6 +15,7 @@ class _webState extends State<web> {
   Web3Client ethcl;
   bool data = false;
   final address = "0x197b4a6ECf9aE7Bb5593417A10ee645b2d9EFAa0";
+  int myAmount = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,6 +45,13 @@ class _webState extends State<web> {
               .make()
               .p16(),
           30.heightBox,
+          SliderWidget(
+            max: 100,
+            min: 0,
+            finalval: (value) => {
+              myAmount = (value * 100).round(),
+            },
+          ).centered(),
           HStack(
             [
               FlatButton.icon(
