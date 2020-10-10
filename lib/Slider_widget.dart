@@ -10,7 +10,7 @@ class SliderWidget extends StatefulWidget {
 
   SliderWidget(
       {this.sliderHeight = 48,
-      this.max = 10,
+      this.max = 100,
       this.min = 0,
       this.fullWidth = false,
       this.finalval});
