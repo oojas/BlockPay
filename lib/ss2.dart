@@ -4,11 +4,13 @@ class CustomSliderThumbCircle extends SliderComponentShape {
   final double thumbRadius;
   final int min;
   final int max;
+  final ValueChanged<double> finalval;
 
   const CustomSliderThumbCircle({
     @required this.thumbRadius,
     this.min = 0,
     this.max = 100,
+    this.finalval,
   });
 
   @override

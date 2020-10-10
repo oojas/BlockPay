@@ -1,6 +1,7 @@
 import 'package:Blockpay/Slider_widget.dart';
 import 'package:Blockpay/ss2.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:http/http.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:web3dart/web3dart.dart';
@@ -16,6 +17,34 @@ class _webState extends State<web> {
   bool data = false;
   final address = "0x197b4a6ECf9aE7Bb5593417A10ee645b2d9EFAa0";
   int myAmount = 0;
+  @override
+  void initState() {
+    httpcl = new Client();
+    ethcl = new Web3Client(
+        "https://rinkeby.infura.io/v3/a2f17d56226d46a5b0c2975adcf34c8b",
+        httpcl);
+
+    super.initState();
+    getBalance(address);
+  }
+
+  Future<DeployedContract> loadcontract() async {
+    String abi = await rootBundle.loadString('lib/Assets/abi.json');
+    String contractaddr = "0xd71cbAba1D3b61fbfa3c1ED0216200A8c739A752";
+
+    final contract = DeployedContract(ContractAbi.fromJson(abi, "BlockPay"),
+        EthereumAddress.fromHex(contractaddr));
+    return contract;
+  }
+
+  Future<List<dynamic>> query(String fname, List<dynamic> args) async {
+    final contract = loadcontract();
+  }
+
+  Future<void> getBalance(String taddr) async {
+    EthereumAddress address = EthereumAddress.fromHex(taddr);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,9 +77,8 @@ class _webState extends State<web> {
           SliderWidget(
             max: 100,
             min: 0,
-            finalval: (value) => {
-              myAmount = (value * 100).round(),
-            },
+            finalval: (value) =>
+                {myAmount = (value * 100).round(), print(myAmount)},
           ).centered(),
           HStack(
             [
