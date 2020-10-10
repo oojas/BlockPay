@@ -17,6 +17,7 @@ class _webState extends State<web> {
   bool data = false;
   final address = "0x197b4a6ECf9aE7Bb5593417A10ee645b2d9EFAa0";
   int myAmount = 0;
+  var myData;
   @override
   void initState() {
     httpcl = new Client();
@@ -32,17 +33,50 @@ class _webState extends State<web> {
     String abi = await rootBundle.loadString('lib/Assets/abi.json');
     String contractaddr = "0xd71cbAba1D3b61fbfa3c1ED0216200A8c739A752";
 
-    final contract = DeployedContract(ContractAbi.fromJson(abi, "BlockPay"),
+    final contract = DeployedContract(ContractAbi.fromJson(abi, "PKCoin"),
         EthereumAddress.fromHex(contractaddr));
     return contract;
   }
 
   Future<List<dynamic>> query(String fname, List<dynamic> args) async {
-    final contract = loadcontract();
+    final contract = await loadcontract();
+    final ethf = contract.function(fname);
+    final result =
+        await ethcl.call(contract: contract, function: ethf, params: args);
+    return result;
   }
 
   Future<void> getBalance(String taddr) async {
     EthereumAddress address = EthereumAddress.fromHex(taddr);
+    List<dynamic> result = await query("getBalance", []);
+    myData = result[0];
+    data = true;
+    setState(() {});
+  }
+
+  Future<String> sendcoin() async {
+    var bigamount = BigInt.from(myAmount);
+    var response = await submit("getDeposit", [bigamount]);
+    return response;
+  }
+
+  Future<String> withdrawcoin() async {
+    var bigamount = BigInt.from(myAmount);
+    var response = await submit("withdrawBalance", [bigamount]);
+    return response;
+  }
+
+  Future<String> submit(String fname, List<dynamic> args) async {
+    EthPrivateKey credentials = EthPrivateKey.fromHex(
+        "93859e0e29a05bdf42f31661a59b6534ba3c00694d5987805238caef65eab99f");
+    DeployedContract contract = await loadcontract();
+    final ethf = contract.function(fname);
+    final result = await ethcl.sendTransaction(
+        credentials,
+        Transaction.callContract(
+            contract: contract, function: ethf, parameters: args),
+        fetchChainIdFromNetworkId: true);
+    return result;
   }
 
   @override
@@ -63,7 +97,7 @@ class _webState extends State<web> {
             "Balance".text.gray700.xl2.semiBold.makeCentered(),
             10.heightBox,
             data
-                ? "\$1".text.bold.xl6.makeCentered()
+                ? "\$$myData".text.bold.xl6.makeCentered().shimmer()
                 : CircularProgressIndicator().centered()
           ]))
               .p16
@@ -83,21 +117,21 @@ class _webState extends State<web> {
           HStack(
             [
               FlatButton.icon(
-                      onPressed: () {},
+                      onPressed: () => getBalance(address),
                       color: Colors.blue,
                       shape: Vx.roundedSm,
                       icon: Icon(Icons.refresh),
                       label: "Refresh".text.white.bold.make())
                   .h(50),
               FlatButton.icon(
-                      onPressed: () {},
+                      onPressed: () => sendcoin(),
                       color: Colors.green,
                       shape: Vx.roundedSm,
                       icon: Icon(Icons.call_made_outlined),
                       label: "Refresh".text.white.bold.make())
                   .h(50),
               FlatButton.icon(
-                      onPressed: () {},
+                      onPressed: () => withdrawcoin(),
                       color: Colors.red,
                       shape: Vx.roundedSm,
                       icon: Icon(Icons.call_received_outlined),
