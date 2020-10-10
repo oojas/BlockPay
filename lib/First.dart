@@ -19,8 +19,12 @@ class _webState extends State<web> {
       body: ZStack([
         VxBox()
             .blue600
-            .size(context.screenWidth, context.screenHeight * 30)
+            .size(context.screenWidth, context.percentHeight * 30)
             .make(),
+        VStack([
+          (context.percentHeight * 10).heightBox,
+          "\$BlockPay".text.xl4.white.bold.center.makeCentered().py16()
+        ])
       ]),
     );
   }
