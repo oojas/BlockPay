@@ -6,7 +6,7 @@
 <a href="https://dscommunity.in">
 	<img src="https://github.com/oojas/BlockPay/blob/master/images/logo.png" width=20%/>
 </a>
-	<h2 align="center"> Tag line </h2>
+	<h2 align="center">Decentralised AI powered Money Lending Application</h2>
 	<h4 align="center">Blockpay is blockchain based money lending application which is made through flutter <h4>
 	
 <br>
