@@ -19,7 +19,12 @@
 	 
 </p>
 
-
+## Preview
+<img src="https://github.com/oojas/BlockPay/blob/master/images/Artboard%201.png" width=45%/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="https://github.com/oojas/BlockPay/blob/master/images/Artboard%202.png" width=45%/>
+<br>
+<br>
+<br>
+<img src="https://github.com/oojas/BlockPay/blob/master/images/Artboard%203.png" width=45%/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="https://github.com/oojas/BlockPay/blob/master/images/Artboard%204.jpg" width=45%/>
 
 ## Problem Statement:
 
