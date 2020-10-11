@@ -1,5 +1,5 @@
 
-# Blockpay 
+# BlockPay 
 
 
 <p align="center">
