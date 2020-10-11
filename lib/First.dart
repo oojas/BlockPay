@@ -93,14 +93,14 @@ class _webState extends State<web> {
             .make(),
         VStack([
           (context.percentHeight * 10).heightBox,
-          "\$BlockPay".text.xl4.white.bold.center.makeCentered().py16(),
+          "\u{20B9}BlockPay".text.xl4.white.bold.center.makeCentered().py16(),
           (context.percentHeight * 5).heightBox,
           VxBox(
                   child: VStack([
             "Balance".text.gray700.xl2.semiBold.makeCentered(),
             10.heightBox,
             data
-                ? "\$$myData".text.bold.xl6.makeCentered().shimmer()
+                ? "\u{20B9}$myData".text.bold.xl6.makeCentered().shimmer()
                 : CircularProgressIndicator().centered()
           ]))
               .p16
