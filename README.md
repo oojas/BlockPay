@@ -20,11 +20,11 @@
 </p>
 
 ## Preview
-<img src="https://github.com/oojas/BlockPay/blob/master/images/Artboard%201.png" width=45%/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="https://github.com/oojas/BlockPay/blob/master/images/Artboard%202.png" width=45%/>
+<img src="https://github.com/oojas/BlockPay/blob/master/images/Artboard%201.png" width=40%/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="https://github.com/oojas/BlockPay/blob/master/images/Artboard%202.png" width=40%/>
 <br>
 <br>
 <br>
-<img src="https://github.com/oojas/BlockPay/blob/master/images/Artboard%203.png" width=45%/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="https://github.com/oojas/BlockPay/blob/master/images/Artboard%204.jpg" width=45%/>
+<img src="https://github.com/oojas/BlockPay/blob/master/images/Artboard%203.png" width=40%/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="https://github.com/oojas/BlockPay/blob/master/images/Artboard%204.jpg" width=40%/>
 
 ## Problem Statement:
 
@@ -91,6 +91,16 @@ App Development
 
 The app was developed using Flutter
 The web3dart package was used to connect the app to the Ethereum Network.
+
+
+## Future Prospects
+
+In the aforementioned submission we have the working client side application for the money borrower. Also along that we have the working machine learning model, the complete blockchain transaction system and all the functionalities that could be possibly needed for such an environment. The aspects that we need to integrate is the ml and blockchain part with the built app.
+Once we have that ready we plan on making this app public. How will that work?
+The best part of this app is that the ml software it uses for prediction is extremely limber, that is the data of clients is enough to create a predictor just by adding the data in the software by the admin. This clearly implies that this is a high-end bank which has tougher credit rules or if it is a local money lender in a rural area that lends money to a more specific cohort we have it all covered. This extremely flexible app works with any system just adding the data of the previous customers and the transactions are safe, sound and transparent along with a loan approval predictor.
+In the final strata of the project we aim at making it an ubiquitous system that is present on every nook and corner of the industry, and why shouldn’t it be? It certainly is credible for it.
+
+
 
 
 A few resources to get you started if this is your first Flutter project:
