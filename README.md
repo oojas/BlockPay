@@ -13,7 +13,7 @@
 
 <p align="center">
 	 
-[Checkout the Project Demonstration and Explanation Video Here!](https://youtu.be/5ydDAwN0fu4)
+[Checkout the Project Demonstration and Explanation Video Here!]()
 
 
 	 
